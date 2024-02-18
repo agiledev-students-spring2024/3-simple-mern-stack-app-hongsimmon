@@ -21,6 +21,7 @@ mongoose
 // load the dataabase models we want to deal with
 const { Message } = require('./models/Message')
 const { User } = require('./models/User')
+const { Myself } = require('./models/Myself')
 
 // a route to handle fetching all messages
 app.get('/messages', async (req, res) => {
@@ -77,6 +78,44 @@ app.post('/messages/save', async (req, res) => {
     })
   }
 })
+
+app.get('/aboutus', async (req, res) => {
+  //console.log("hello");
+  // const aboutData = {
+  //   image: "../image.JPG",
+  //   name: "Yujin Hong",
+  //   paragraph: "Hello! I am a senior majoring in CS in the College of Arts and Sciences at NYU. I was born in Seoul, Korea, "
+  //   // but have lived in 4 different cities since then -- Vancouver, Boston, L.A, and New York. My hobbies are Volleyball and watching movies!"
+  // };
+  try {
+    res.json({
+      image: "myImage.JPG",
+      name: "Yujin Hong",
+      paragraph: "Hello! I am a senior majoring in CS in the College of Arts and Sciences at NYU. I was born in Seoul, Korea, but have lived in 4 different cities since then -- Vancouver, Boston, L.A, and New York. My hobbies are Volleyball and reading. I'm also a huge Studio Ghibli fan!",
+      status: 'all good',
+    })
+  } catch(err) {
+    console.log(err);
+  }
+});
+
+// app.get('/aboutus', async (req, res) => {
+//   // load all messages from database
+//   try {
+//     //const messages = await Message.find({})
+//     res.json({
+//       name: "wow",
+//       paragraph:"hello...",
+//       status: 'all good',
+//     })
+//   } catch (err) {
+//     console.error(err)
+//     res.status(400).json({
+//       error: err,
+//       status: 'failed to retrieve messages from the database',
+//     })
+//   }
+// })
 
 // export the express app we created to make it available to other modules
 module.exports = app // CommonJS export style!
